@@ -15,20 +15,40 @@ const Menu = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" style={{ background: "#2E3B55" }}>
-        <Toolbar>
+        <Toolbar style={{ paddingLeft: "5px" }}>
           <IconButton
-            size="large"
+            size="small"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 0 }}
           >
             <MenuIcon />
           </IconButton>
-          <MenuItem onClick={() => sendTo("/")}>Lista de Cervejas</MenuItem>
-          <MenuItem onClick={onWeddingClick}>Casamento</MenuItem>
-          <MenuItem onClick={onGraduationClick}>Graduação</MenuItem>
-          <MenuItem onClick={onPartyClick}>Confraternização</MenuItem>
+          <MenuItem
+            style={{ paddingRight: "3px", paddingLeft: "0", fontSize: "10px" }}
+            onClick={() => sendTo("/")}
+          >
+            Lista de Cervejas
+          </MenuItem>
+          <MenuItem
+            style={{ paddingRight: "3px", fontSize: "10px" }}
+            onClick={onWeddingClick}
+          >
+            Casamento
+          </MenuItem>
+          <MenuItem
+            style={{ paddingRight: "3px", fontSize: "10px" }}
+            onClick={onGraduationClick}
+          >
+            Graduação
+          </MenuItem>
+          <MenuItem
+            style={{ paddingRight: "3px", fontSize: "10px" }}
+            onClick={onPartyClick}
+          >
+            Confraternização
+          </MenuItem>
         </Toolbar>
       </AppBar>
     </Box>

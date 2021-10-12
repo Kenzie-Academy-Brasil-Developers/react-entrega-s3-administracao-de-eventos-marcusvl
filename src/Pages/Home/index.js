@@ -1,7 +1,17 @@
 import { Paper } from "@material-ui/core";
 import { useState } from "react";
 import { useList } from "../../Providers/list";
-import "./index.css";
+import {
+  Container,
+  ProductBox,
+  Image,
+  BeerName,
+  BeerDescription,
+  ProductButton,
+  BeerDetails,
+  ContainerButton,
+  ModalButton,
+} from "./styles";
 import Modal from "../../components/Modal";
 import { useCart } from "../../Providers/cart";
 
@@ -14,7 +24,7 @@ const Home = () => {
   return (
     <>
       <h2>Lista de Cervejas</h2>
-      <div className="container">
+      <Container>
         {beerList.map((beer, index) => (
           <Paper
             elevation={20}
@@ -26,37 +36,35 @@ const Home = () => {
               justifyContent: "center",
             }}
           >
-            <div className="product-box">
-              <img src={beer.image_url} alt={beer.name} />
-              <h3>{beer.name}</h3>
-              <p className="beer-description">{beer.description}</p>
-              <button
-                className="product-button"
+            <ProductBox>
+              <Image src={beer.image_url} alt={beer.name} />
+              <BeerName>{beer.name}</BeerName>
+              <BeerDescription>{beer.description}</BeerDescription>
+              <ProductButton
                 onClick={() => {
                   setIsModalVisible(true);
                   setSelectedBeer(beer);
                 }}
               >
                 Ver produto
-              </button>
-            </div>
+              </ProductButton>
+            </ProductBox>
           </Paper>
         ))}
         {isModalVisible && (
           <Modal onClose={() => setIsModalVisible(false)}>
             <div className="beer-title">
               <h2>{selectedBeer.name}</h2>
-              <p className="beer-details">{selectedBeer.first_brewed}</p>
+              <BeerDetails>{selectedBeer.first_brewed}</BeerDetails>
             </div>
-            <p className="beer-details">{selectedBeer.description}</p>
-            <p className="beer-details">
+            <BeerDetails>{selectedBeer.description}</BeerDetails>
+            <BeerDetails>
               <strong>Volume:</strong>
               {selectedBeer.volume.value} {selectedBeer.volume.unit}
-            </p>
-            <h3>Lista de eventos:</h3>
-            <div className="container-button">
-              <button
-                className="modal-button"
+            </BeerDetails>
+            <BeerName>Lista de eventos:</BeerName>
+            <ContainerButton>
+              <ModalButton
                 onClick={() => {
                   const { wedding, graduation, party } = cart;
                   setCart({
@@ -67,9 +75,8 @@ const Home = () => {
                 }}
               >
                 adicionar casamento
-              </button>
-              <button
-                className="modal-button"
+              </ModalButton>
+              <ModalButton
                 onClick={() => {
                   const { wedding, graduation, party } = cart;
                   setCart({
@@ -80,9 +87,8 @@ const Home = () => {
                 }}
               >
                 adicionar confraternização
-              </button>
-              <button
-                className="modal-button"
+              </ModalButton>
+              <ModalButton
                 onClick={() => {
                   const { wedding, graduation, party } = cart;
                   setCart({
@@ -93,11 +99,11 @@ const Home = () => {
                 }}
               >
                 adicionar graduação
-              </button>
-            </div>
+              </ModalButton>
+            </ContainerButton>
           </Modal>
         )}
-      </div>
+      </Container>
     </>
   );
 };

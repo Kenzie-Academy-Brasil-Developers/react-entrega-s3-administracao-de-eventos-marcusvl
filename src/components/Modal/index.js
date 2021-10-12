@@ -1,4 +1,9 @@
-import "./index.css";
+import {
+  LargeContainerModal,
+  ContainerModal,
+  ContentModal,
+  Close,
+} from "./styles";
 
 const Modal = ({ children, onClose = () => {}, id = "modal" }) => {
   const handleOutsideClick = (e) => {
@@ -7,12 +12,12 @@ const Modal = ({ children, onClose = () => {}, id = "modal" }) => {
     }
   };
   return (
-    <div className="modal" id={id} onClick={handleOutsideClick}>
-      <div className="container-modal">
-        <button className="close" onClick={onClose} />
-        <div className="content-modal">{children}</div>
-      </div>
-    </div>
+    <LargeContainerModal id={id} onClick={handleOutsideClick}>
+      <ContainerModal>
+        <Close onClick={onClose} />
+        <ContentModal>{children}</ContentModal>
+      </ContainerModal>
+    </LargeContainerModal>
   );
 };
 

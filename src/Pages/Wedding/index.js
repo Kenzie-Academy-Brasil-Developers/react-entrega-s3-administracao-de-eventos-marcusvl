@@ -1,6 +1,14 @@
 import { useCart } from "../../Providers/cart";
 import { Paper } from "@material-ui/core";
-import "./index.css";
+import { WeddingImage } from "./styles";
+import {
+  BeerDescription,
+  BeerName,
+  Container,
+  Image,
+  ProductBox,
+} from "../Home/styles";
+import { ContainerEvent, RemoveButton } from "../Graduation/styles";
 
 const Wedding = () => {
   const { cart, setCart } = useCart();
@@ -16,12 +24,12 @@ const Wedding = () => {
   };
 
   return (
-    <div className="container-wedding">
-      <div className="wedding">
+    <ContainerEvent>
+      <WeddingImage>
         <h1>Casamento</h1>
-      </div>
+      </WeddingImage>
       <h2>Lista de bebidas</h2>
-      <div className="container">
+      <Container>
         {cart.wedding.map((beer, index) => (
           <Paper
             elevation={20}
@@ -33,21 +41,18 @@ const Wedding = () => {
               justifyContent: "center",
             }}
           >
-            <div className="product-box">
-              <img src={beer.image_url} alt={beer.name} />
-              <h3>{beer.name}</h3>
-              <p className="beer-description">{beer.description}</p>
-              <button
-                className="remove-button"
-                onClick={() => removeBeer(index)}
-              >
+            <ProductBox>
+              <Image src={beer.image_url} alt={beer.name} />
+              <BeerName>{beer.name}</BeerName>
+              <BeerDescription>{beer.description}</BeerDescription>
+              <RemoveButton onClick={() => removeBeer(index)}>
                 Ver produto
-              </button>
-            </div>
+              </RemoveButton>
+            </ProductBox>
           </Paper>
         ))}
-      </div>
-    </div>
+      </Container>
+    </ContainerEvent>
   );
 };
 
